@@ -1,0 +1,39 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "android>4.0"
+          ]
+        },
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ],
+    "@babel/typescript"
+  ],
+  "plugins": [
+    // "@babel/proposal-class-properties", // 插件会将类中的属性编译
+    // "@babel/proposal-object-rest-spread", //
+    [
+      // @babel/plugin-transform-runtime
+      // 解决打包时 bable 引入的辅助函数多次注入的问题
+      // @babel/runtime 会提供这些函数，但是需要我们手动去修改
+      // @babel/plugin-transform-runtime 会自动帮我们进行替换
+      // 具体参考: https://www.cnblogs.com/zhansu/p/13339745.html
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "corejs": false,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false
+      }
+    ]
+  ],
+  "sourceType": "unambiguous"
+}

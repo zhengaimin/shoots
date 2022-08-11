@@ -1,0 +1,40 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "node": true,
+    "commonjs": true, // 配置文件使用的为 cjs，所以环境需要添加这个
+    "browser": true
+  },
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ]
+  },
+  "settings": {
+    //解决路径引用ts文件报错的问题
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      // 解决tsconfig下的path别名导致eslint插件无法解决的bug
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+}
