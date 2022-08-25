@@ -1,19 +1,16 @@
-import { createRouter, createWebHashHistory, RouterOptions, Router } from 'vue-router';
+import { createRouter, createWebHistory, RouterOptions, Router } from 'vue-router';
 import { MenuItemRouter } from '@/types/router';
 
+// import {  } from '@/data/router/index';
+import * as guideRouter from './guide';
+
 const routes: Array<MenuItemRouter> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/components/HelloWorld.vue'),
-    meta: {
-      requiresAuth: false
-    },
-  },
+  /** 指引 */
+  ...guideRouter.default,
 ];
 
 const options: RouterOptions = {
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 };
 

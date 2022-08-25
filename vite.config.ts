@@ -4,6 +4,9 @@ import { defineConfig } from 'vite';
 // plugin
 import eslintPlugin from 'vite-plugin-eslint';
 import vue from '@vitejs/plugin-vue';
+// 这个插件允许组件使用 setup 模式时，通过 <script setup name="xx"> 对组件进行命名
+// 但是直接引用变量 <script setup :name="Name"> 这样不行
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 const resolve = dir => path.join(__dirname, dir);
 
@@ -22,7 +25,7 @@ export default defineConfig({
     alias: aliasFn(),
   },
   publicDir: resolve(`${ROOT_PATH}/public`),
-  plugins: [vue(), eslintPlugin({ cache: false })],
+  plugins: [vue(), eslintPlugin({ cache: false }), vueSetupExtend()],
   build: {
     outDir: resolve('dist'),
     assetsDir: 'public',
